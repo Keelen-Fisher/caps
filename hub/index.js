@@ -8,9 +8,16 @@ const io = new Server(PORT);
 
 const caps = io.of('/caps');
 
-io.on('connection', (socket) => {
+caps.on('connection', (socket) => {
   console.log('This socket is now connect to the Event Server!', socket.id);
+
+  
 });
+
+socket.onAny((event, payload) => {
+  
+});
+
 
 //   socket.on('IN-TRANSIT', (payload) => {
 //     console.log('Server IN-TRANSIT event', payload);
@@ -25,10 +32,13 @@ io.on('connection', (socket) => {
 
 caps.on('connection', (socket) => {
   console.log('Socket is officially connected to caps!', socket.id);
-
   socket.on('JOIN', (room) => {
     console.log(`You've joined the ${room} room`);
+    // how to actually join a room
+    socket.join (room);
   });
+
+  // socket.on
 
 });
 
