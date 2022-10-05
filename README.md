@@ -38,6 +38,21 @@ Moving forward, build the Event Driver from lab 11, transition to lab 12 and wor
 
   - As a developer, I want to create network event driven system using Socket.io so that I can write code that responds to events originating from both servers and client applications
 
+## Installed
+
+    "dependencies": 
+
+      "base-64": "^1.0.0",
+      "chance": "^1.1.8",
+      "dotenv": "^16.0.3",
+      "eslint": "^8.24.0",
+      "jest": "^29.1.2",
+      "nodemon": "^2.0.20",
+      "sequelize": "^6.24.0",
+      "socket.io": "^4.5.2",
+      "socket.io-client": "^4.5.2",
+      "supertest": "^6.3.0"
+
 - Diagram:
 
 ![UML](UML%20Rough%20Draft%20for%20Lab%2012.png)
