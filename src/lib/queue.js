@@ -4,6 +4,8 @@ class Queue {
   constructor() {
     this.data = {};
   }
+
+  // will be within an array
   store(key, value) {
     this.data[key] = value;
     return key;

@@ -59,7 +59,6 @@ Moving forward, build the Event Driver from lab 11, transition to lab 12 and wor
 
 ![UML](assets/UML%20Rough%20Draft%20for%20Lab%2012.png)
 
-
 - [Link to PR:](https://github.com/Keelen-Fisher/caps/pulls?q=is%3Apr+is%3Aclosed)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,6 +66,8 @@ Moving forward, build the Event Driver from lab 11, transition to lab 12 and wor
 ## Lab 13
 
 ## Description
+
+### One Queue to hold all queues
 
 - In this phase, we are going to implement a system to guarantee that notification payloads are read by their intended subscriber. Rather than just triggering an event notification and hope that client applications respond, we’re going to implement a “Queue” system so that nothing gets lost. Every event sent will be logged and held onto by the server until the intended recipient acknowledges that they received the message. At any time, a subscriber can get all of the messages they might have missed.
 
