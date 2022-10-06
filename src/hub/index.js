@@ -8,6 +8,9 @@ const io = new Server(PORT); // http://localhost:3002
 // Namespace created
 const caps = io.of('/caps');
 
+
+const Queue = require('./queue');
+const infoQueue = new Queue();
 // function eventLog(event, payload) {
 //   let date = new Date;
 //   let time = date.toTimeString();
@@ -22,6 +25,11 @@ caps.on('connection', (socket) => {
     let time = date.toTimeString();
     console.log('EVENT', { event, time, payload });
 
+  });
+
+  socket.on('JOIN', (queueID) => {
+    socket.joing(queueID);
+    socket.emit('JOIN', queueID);
   });
 
   socket.on('JOIN', (room) => {

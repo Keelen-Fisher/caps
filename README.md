@@ -1,6 +1,8 @@
 # caps
 
-## Approch
+## Lab 12
+
+## Approach
 
 - Attend lecture videos for yesterday's lab and today's lab on this application.
 
@@ -55,6 +57,40 @@ Moving forward, build the Event Driver from lab 11, transition to lab 12 and wor
 
 - Diagram:
 
-![UML](UML%20Rough%20Draft%20for%20Lab%2012.png)
+![UML](assets/UML%20Rough%20Draft%20for%20Lab%2012.png)
+
 
 - [Link to PR:](https://github.com/Keelen-Fisher/caps/pulls?q=is%3Apr+is%3Aclosed)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Lab 13
+
+## Description
+
+- In this phase, we are going to implement a system to guarantee that notification payloads are read by their intended subscriber. Rather than just triggering an event notification and hope that client applications respond, we’re going to implement a “Queue” system so that nothing gets lost. Every event sent will be logged and held onto by the server until the intended recipient acknowledges that they received the message. At any time, a subscriber can get all of the messages they might have missed.
+
+- In Phase 3, we are building a set of features to help manage deliveries made by CAPS Drivers. This will simulate a delivery driver receiving a list of orders from a Queue and “scanning” package codes on delivery. Retailers will be able to see in their dashboard or log, a list of all packages delivered in real time. Should a delivery driver deliver many packages while the retailer is not connected to the dashboard, the vendor client should be guaranteed to receive “delivery” notifications from the Queue system.
+
+## Requirements Lab 13
+
+- As a vendor, I want to “subscribe” to “delivered” notifications so that I know when my packages are delivered.
+- As a vendor, I want to “catch up” on any “delivered” notifications that I might have missed so that I can see a complete log.
+- As a driver, I want to “subscribe” to “pickup” notifications so that I know what packages to deliver.
+- As a driver, I want to “catch up” on any “pickup” notifications I may have missed so that I can deliver everything.
+- As a driver, I want a way to “scan” a delivery so that the vendors know when a package has been delivered.
+
+- As a developer, I want to create a system of tracking who is subscribing to each event.
+- As a developer, I want to place all inbound messages into a “queue” so that my application knows what events are to be delivered.
+- As a developer, I want to create a system for communicating when events have been delivered and received by subscribers.
+- As a developer, I want to delete messages from the queue after they’ve been received by a subscriber, so that I don’t re-send them.
+- As a developer, I want to create a system for allowing subscribers to retrieve all undelivered messages in their queue.
+
+Installed:
+
+    "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2"
+
+## Diagram
+
+![UML](assets/Lab%2013%20Diagram-Description.png)
