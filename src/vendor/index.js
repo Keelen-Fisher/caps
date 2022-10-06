@@ -2,10 +2,10 @@
 
 const { io } = require('socket.io-client')
 const socket = io('http://localhost:3002/caps');
+const pickupRequest = require('./vendorPickUp');
 // const driverPickedUp = require('./driverPickedUp');
 // const driverDelivered = require('./driverDelivered');
 
-const pickupRequest = require('./venderPickUp');
 // socket.on('PICKUP', driverPickedUp(socket));
 // socket.on('DELIVERED', driverDelivered(socket));
 

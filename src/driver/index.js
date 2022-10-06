@@ -11,5 +11,5 @@ const driverPickedUp = require('./driverPickedUp')(socket);
 // socket.on('DELIVERED', driverDelivered(socket));
 
 // module.exports = socket;
-socket.io('PICKUP', driverPickedUp);
-module.exports = {driverPickedUp, socket};
+socket.on('PICKUP', driverPickedUp);
+// module.exports = {driverPickedUp, socket};
