@@ -8,9 +8,10 @@ const io = new Server(PORT); // http://localhost:3002
 // Namespace created
 const caps = io.of('/caps');
 
+// Creating Queue
+const Queue = require('../lib/queue');
+const messageQueue = new Queue();
 
-const Queue = require('./queue');
-const infoQueue = new Queue();
 // function eventLog(event, payload) {
 //   let date = new Date;
 //   let time = date.toTimeString();
@@ -27,10 +28,10 @@ caps.on('connection', (socket) => {
 
   });
 
-  socket.on('JOIN', (queueID) => {
-    socket.joing(queueID);
-    socket.emit('JOIN', queueID);
-  });
+  // socket.on('JOIN', (queueID) => {
+  //   socket.joing(queueID);
+  //   socket.emit('JOIN', queueID);
+  // });
 
   socket.on('JOIN', (room) => {
     console.log(`You've joined the ${room} room`);
@@ -39,7 +40,12 @@ caps.on('connection', (socket) => {
   });
 
   socket.on('PICKUP', (payload) => {
-    // eventLog('PICKUP', payload);
+    let currentQueue = messageQueue.read(payload.queueId);
+    if(!currentQueue){
+      let queueKey = messageQueue.store(payload.queueId, new Queue());
+      currentQueue = messageQueue.read(queueKey);
+    }
+    currentQueue.store(payload.messageId, payload);
     socket.broadcast.emit('PICKUP', payload);
   });
 
@@ -51,6 +57,25 @@ caps.on('connection', (socket) => {
   socket.on('DELIVERED', (payload) => {
     // eventLog('DELIVERED', payload);
     socket.broadcast.emit('DELIVERED', payload);
+  });
+
+  socket.on('RECEIVED', (payload) => {
+    let currentQueue = messageQueue.read(payload.queueId);
+    if(!currentQueue){
+      throw new Error('No Queue Created, messaging error');
+    }
+    let deleteMessage = currentQueue.remove(payload.messageId);
+  });
+
+  socket.on('GETALL', (payload) => {
+    console.log(`getting all messages for ${payload.queueId}` );
+
+    let currentQueue = messageQueue.read(payload.queueId);
+    if(currentQueue && currentQueue.data){
+      Object.keys(currentQueue.data).forEach(messageId => {
+        socket.emit('DELIVERED', currentQueue.read(messageId));
+      });
+    }
   });
 
 });

@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = (socket) => (payload) => {
-  setInterval(() => {
-    console.log(`DRIVER: The order has been Picked up: ${payload.orderID}`);
+  setTimeout(() => {
+    console.log(`DRIVER: The order has been Picked up: ${payload.orderId}`);
     socket.emit('IN-TRANSIT', payload);
-  }, 1000);
+  }, 4000);
 
-  setInterval(() => {
-    console.log(`DRIVER: Order has been delivered ${payload.orderID}`);
+  setTimeout(() => {
+    console.log(`DRIVER: Order has been delivered ${payload.orderId}`);
     socket.emit('DELIVERED', payload);
-  }, 3000);
+  }, 25000);
 };
 
 

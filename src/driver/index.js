@@ -2,7 +2,8 @@
 
 const { io } = require('socket.io-client');
 const socket = io('http://localhost:3002/caps');
-const driverPickedUp = require('./driverPickedUp')(socket);
+const driverMessage = require('./driverPickedUp');
+const driverPickedUp = driverMessage(socket);
 // const Chance = require('chance');
 // const driverDelivered = require('./driverDelivered');
 // socket.emit('JOIN', 'Caps');
@@ -11,5 +12,7 @@ const driverPickedUp = require('./driverPickedUp')(socket);
 // socket.on('DELIVERED', driverDelivered(socket));
 
 // module.exports = socket;
+// socket.emit('GETALL');
+
 socket.on('PICKUP', driverPickedUp);
 // module.exports = {driverPickedUp, socket};
