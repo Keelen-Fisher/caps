@@ -2,12 +2,12 @@
 
 module.exports = (socket) => (payload) => {
   setInterval(() => {
-    console.log(`DRIVER: The order has been Picked up: ${payload.orderId}`);
+    console.log(`DRIVER: The order has been Picked up: ${payload.orderID}`);
     socket.emit('IN-TRANSIT', payload);
   }, 1000);
 
   setInterval(() => {
-    console.log(`DRIVER: Order has been delivered`);
+    console.log(`DRIVER: Order has been delivered ${payload.orderID}`);
     socket.emit('DELIVERED', payload);
   }, 3000);
 };
