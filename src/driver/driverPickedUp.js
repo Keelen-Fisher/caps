@@ -9,11 +9,8 @@ module.exports = (socket) => (payload) => {
   setTimeout(() => {
     console.log(`DRIVER: Order has been delivered ${payload.orderId}`);
     socket.emit('DELIVERED', payload);
-  }, 25000);
+  }, 10000);
 };
 
 
-// socket.emit('log', payload);
-// console.log(`DRIVER: order has been made and picked up: ${payload.orderId}`);
-// socket.emit('DELIVERED', { payload });
 

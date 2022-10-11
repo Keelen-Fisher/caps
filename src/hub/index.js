@@ -12,12 +12,6 @@ const caps = io.of('/caps');
 const Queue = require('../lib/queue');
 const messageQueue = new Queue();
 
-// function eventLog(event, payload) {
-//   let date = new Date;
-//   let time = date.toTimeString();
-//   console.log('EVENT', { event, time, payload });
-// }
-
 caps.on('connection', (socket) => {
   console.log('This socket is now connect to the Event Server!', socket.id);
 
@@ -28,10 +22,6 @@ caps.on('connection', (socket) => {
 
   });
 
-  // socket.on('JOIN', (queueID) => {
-  //   socket.joing(queueID);
-  //   socket.emit('JOIN', queueID);
-  // });
 
   socket.on('JOIN', (room) => {
     console.log(`You've joined the ${room} room`);
@@ -50,12 +40,10 @@ caps.on('connection', (socket) => {
   });
 
   socket.on('IN-TRANSIT', (payload) => {
-    // eventLog('IN-TRANSIT', payload);
     socket.broadcast.emit('IN-TRANSIT', payload);
   });
 
   socket.on('DELIVERED', (payload) => {
-    // eventLog('DELIVERED', payload);
     socket.broadcast.emit('DELIVERED', payload);
   });
 
