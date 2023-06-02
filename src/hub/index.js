@@ -40,7 +40,7 @@ caps.on('connection', (socket) => {
   });
 
   socket.on('IN-TRANSIT', (payload) => {
-    socket.broadcast.emit('IN-TRANSIT', payload);
+    socket.broadcast.emit('RECEIVED', payload);
   });
 
   socket.on('DELIVERED', (payload) => {
@@ -52,7 +52,6 @@ caps.on('connection', (socket) => {
     if(!currentQueue){
       throw new Error('No Queue Created, messaging error');
     }
-    let deleteMessage = currentQueue.remove(payload.messageId);
   });
 
   socket.on('GETALL', (payload) => {
